@@ -1,8 +1,7 @@
 <?php
 
-namespace Filament\Resources;
+namespace App\Filament\Resources;
 
-use App\Domain\Passenger\FlightCollisionDetector;
 use App\Filament\Resources\PassengerResource\Pages;
 use App\Filament\Resources\PassengerResource\RelationManagers;
 use App\Models\Passenger;
@@ -13,6 +12,7 @@ use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Domain\Passenger\FlightCollisionDetector;
 
 class PassengerResource extends Resource
 {
@@ -24,10 +24,7 @@ class PassengerResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make("name")->required(),
-                Forms\Components\TextInput::make("age")->required(),
-                Forms\Components\TextInput::make("nationality")->required(),
-                Forms\Components\TextInput::make("email")->required(),
+                Forms\Components\TextInput::make('email')->required(),
             ]);
     }
 
@@ -35,14 +32,12 @@ class PassengerResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make("name"),
-                Tables\Columns\TextColumn::make("age"),
-                Tables\Columns\TextColumn::make("nationality"),
-                Tables\Columns\TextColumn::make("email"),
-                Tables\Columns\TextColumn::make("id")->getStateUsing(
-                    function ($record){
+                Tables\Columns\TextColumn::make('email'),
+                Tables\Columns\TextColumn::make('id')->getStateUsing(
+                    function($record) {
                         return FlightCollisionDetector::run($record);
-                    })
+                    }
+                ),
             ])
             ->filters([
                 //

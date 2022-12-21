@@ -20,9 +20,6 @@ class PassengersRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make("name")->required(),
-                Forms\Components\TextInput::make("age")->required(),
-                Forms\Components\TextInput::make("nationality")->required(),
                 Forms\Components\TextInput::make("email")->required(),
             ]);
     }
@@ -31,9 +28,6 @@ class PassengersRelationManager extends RelationManager
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make("name"),
-                Tables\Columns\TextColumn::make("age"),
-                Tables\Columns\TextColumn::make("nationality"),
                 Tables\Columns\TextColumn::make("email"),
                 Tables\Columns\TextColumn::make('id'),
             ])

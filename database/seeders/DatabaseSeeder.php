@@ -51,9 +51,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $passenger = Passenger::Create([
-            "name" => "Ich",
-            "age" => "20",
-            "nationality" => "hier",
             "email" => "lol@gmail.com"
         ]);
 
